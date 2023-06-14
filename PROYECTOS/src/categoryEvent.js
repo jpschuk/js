@@ -5,5 +5,5 @@ categoryContainer.addEventListener("click", (e) => {
   if (e.target.closest("a")) {
     galery.classList.add("galeria--active");
     document.body.style.overflow = "hidden";
-  } tico asd
+  }
 });
