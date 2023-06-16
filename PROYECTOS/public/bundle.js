@@ -1,6 +1,6 @@
 'use strict';
 
-var data = {
+var dataFotos = {
   fotos: {
     america: [
       {
@@ -431,7 +431,7 @@ var data = {
   },
 };
 
-const { fotos } = data;
+const { fotos } = dataFotos;
 
 var categoryData = {
   categorias: [
@@ -493,15 +493,38 @@ categorias.map((categoria) => {
   newCategory.href = "#";
   newCategory.dataset.categoria = categoria.id;
   categoryContainer$1.append(newCategory);
-  console.log(newCategory);
 });
 
 const categoryContainer = document.getElementById("categorias");
-const galery = document.getElementById("galeria");
+const galery$1 = document.getElementById("galeria");
 categoryContainer.addEventListener("click", (e) => {
   e.preventDefault();
   if (e.target.closest("a")) {
-    galery.classList.add("galeria--active");
+    galery$1.classList.add("galeria--active");
     document.body.style.overflow = "hidden";
+    const categoriaActiva = e.target.dataset.categoria;
+    const imgs = dataFotos.fotos[categoriaActiva];
+
+    imgs.map((img) => {
+      const slide = `<a
+      href="#"
+      class="galeria__carousel-slide"
+    >
+      <img
+        class="galeria__carousel-image"
+        src=${img.src}
+        alt=""
+      />
+    </a>`;
+      galery$1.querySelector(".galeria__carousel-slides").innerHTML += slide;
+    });
   }
+  galery$1
+    .querySelector(".galeria__carousel-slides")
+    .classList.add("galeria__carousel-slides -active");
+});
+
+const galery = document.getElementById("galeria");
+galery.addEventListener((e) => {
+  console.log("click");
 });

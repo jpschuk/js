@@ -18,5 +18,4 @@ categorias.map((categoria) => {
   newCategory.href = "#";
   newCategory.dataset.categoria = categoria.id;
   categoryContainer.append(newCategory);
-  console.log(newCategory);
 });
